@@ -11,22 +11,15 @@ contract DeployMoodNft is Script {
         string memory sadSvg = vm.readFile("./img/sad.svg");
         string memory happySvg = vm.readFile("./img/happy.svg");
         vm.startBroadcast();
-        MoodNft moodNft = new MoodNft(
-            svgToImageURI(sadSvg),
-            svgToImageURI(happySvg)
-        );
+        MoodNft moodNft = new MoodNft(svgToImageURI(sadSvg), svgToImageURI(happySvg));
         vm.stopBroadcast();
         return moodNft;
     }
 
     // Lets not copy/paste those imageUri(s), instead creat a function to convert a svg to imageURI
-    function svgToImageURI(
-        string memory svg
-    ) public pure returns (string memory) {
+    function svgToImageURI(string memory svg) public pure returns (string memory) {
         string memory prefix = "data:image/svg+xml;base64,";
-        string memory svgBased64Encoded = Base64.encode(
-            bytes(string(abi.encodePacked(svg)))
-        );
+        string memory svgBased64Encoded = Base64.encode(bytes(string(abi.encodePacked(svg))));
         return string(abi.encodePacked(prefix, svgBased64Encoded));
     }
 }
