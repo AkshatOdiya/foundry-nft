@@ -20,10 +20,7 @@ contract BasicNftTest is Test {
     }
 
     function testNameIsCorrect() external view {
-        assert(
-            keccak256(abi.encodePacked(basicNft.name())) ==
-                keccak256(abi.encodePacked("DogeshBhai"))
-        );
+        assert(keccak256(abi.encodePacked(basicNft.name())) == keccak256(abi.encodePacked("DogeshBhai")));
     }
 
     function testCanMintAndHaveABalance() public {
@@ -31,9 +28,6 @@ contract BasicNftTest is Test {
         basicNft.mintNft(randTokenUri);
 
         assert(basicNft.balanceOf(billionaire) == 1);
-        assert(
-            keccak256(abi.encodePacked(randTokenUri)) ==
-                keccak256(abi.encodePacked(basicNft.tokenURI(0)))
-        );
+        assert(keccak256(abi.encodePacked(randTokenUri)) == keccak256(abi.encodePacked(basicNft.tokenURI(0))));
     }
 }
