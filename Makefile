@@ -53,3 +53,6 @@ flipMoodNft:
 
 zkdeploy: 
 	@forge create src/OurToken.sol:OurToken --rpc-url http://127.0.0.1:8011 --private-key $(DEFAULT_ZKSYNC_LOCAL_KEY) --legacy --zksync
+
+forktest:
+	@forge test --fork-url $(SEPOLIA_RPC_URL)
