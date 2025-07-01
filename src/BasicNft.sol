@@ -18,6 +18,9 @@ contract BasicNft is ERC721 {
         s_tokenCounter++;
     }
 
+    /*
+     * Our BasicNFT is going to use IPFS, so we'll need to set up our function to return this string, pointing to the correct location in IPFS.
+     */
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         return s_tokenIdToUri[tokenId];
     }
