@@ -56,3 +56,46 @@ fs_permissions = [{access = "read", path = "./img/"}]
 Remember to classify file into folders like `unit`, `integrations` or `staging` for respective cases.
 
 Here, file that include only main contract file and unit testing are put under `unit` folder and those who include their respective deployer scripts and integrations(or interactions) tests are put under `integrations` folder.
+
+## Deploying SVG NFT on Anvil
+
+Deploying on Anvil because deploying on testnets can be slow and problematic
+
+1. Kick your Anvil chain by writing `anvil` or `make anvil`(as MakeFile says) in terminal
+2. Open a new terminal and write `make deployMood`.
+
+Lets make a revisit, how to add anvil chain on metamask.
+* Click on `+ Add network`
+* Choose to add a network manually and enter the details as shown below:
+![Adding anvil chain manually](image.png)
+*  Import an anvil account, In your Metamask account selector, choose `+ add account or hardware wallet`
+![add anvil account to metamask](image-1.png)  
+Select `import account` and enter one of the default private keys offered by the anvil chain.
+![anvil private keys](image-2.png)  
+
+you can run `make deployMood` now
+![deployed on anvil](image-3.png)
+
+3. Mint the Nft: With the contract address, we should be able to use a cast command to interact with it.
+```bash
+cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "mintNft()" --private-key ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --rpc-url http://localhost:8545
+```
+
+(We have not made `MoodNftInteractions.s.sol` like `BasicNftInteractions.s.sol` to mint without `cast` but we can use `cast` hehehe!)
+
+When that transaction completes, what we can _finally_ do, is take that contract address, go back into `Metamask > NFTs > Import NFT`. This is going to ask for our contract address, which we have from our deployment, and our tokenId, which is 0.
+
+Once imported ...  
+![importing Nft](image-4.png)
+
+
+4. If you want to flipMood of Nft
+```bash 
+cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "flipMood(uint256)" 0 --private-key ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --
+rpc-url http://localhost:8545
+```
+> ❗ **NOTE**
+> For Metamask to reflect the change, we'll regrettably have to remove and readd the NFT collection.
+
+Once we reimport our NFT however...
+![reimport Nft](image-5.png)
