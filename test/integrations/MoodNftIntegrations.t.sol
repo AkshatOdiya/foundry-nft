@@ -30,6 +30,7 @@ contract MoodNftTest is Test {
     function testFlipTokenToSad() external {
         vm.prank(billionaire);
         moodNft.mintNft();
+        vm.prank(billionaire);
         moodNft.flipMood(0);
         assertEq(keccak256(abi.encodePacked(moodNft.tokenURI(0))), keccak256(abi.encodePacked(SAD_SVG_URI)));
     }
