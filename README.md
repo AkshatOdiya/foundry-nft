@@ -20,3 +20,39 @@ While this is minting,
 2. From MetaMask, go to NFTs and switch to Sepolia.
 3. Click on Import NFTs and paste the copied address.
 4. Since we're the first to create this NFT, the token ID will be zero. Input this and hit 'Add'.
+
+---
+
+# MoodNft using Svgs fro onchain storage
+Let's begin creating our very own dynamic `MoodNFT` with its `SVG` art stored on-chain.
+
+At the core of the NFT we'll build is a `flipMood` function which allows the owner to flip their NFT between happy and sad images.
+1. First creat [MoodNft.sol](https://github.com/AkshatOdiya/foundry-nft/blob/main/src/MoodNft.sol)  
+
+> ❗ **IMPORTANT**
+> **tokenURI != imageURI**
+>
+> It's important to remember that imageURI is one property of a token's tokenURI. A tokenURI is usually a JSON object!
+
+At this point you may be asking, if the tokenURI is a JSON object, how do we store this on-chain? The answer: We can encode it in much the same way!
+
+OpenZeppelin actually offers a **[Utilities](https://docs.openzeppelin.com/contracts/4.x/utilities)** package which includes a Base64 function which we can leverage to encode our tokenURI on-chain. 
+
+2. Testing tokenURI  
+Given the complexity of our tokenURI function, let's take a moment to write a quick test and assure it's returning what we'd expect it to. Here is the file  [MoodNftTest.t.sol](https://github.com/AkshatOdiya/foundry-nft/blob/main/test/unit/MoodNftTest.t.sol)  
+
+3. [DeployMoodNft.s.sol](https://github.com/AkshatOdiya/foundry-nft/blob/main/script/DeployMoodNft.s.sol)  
+This DeployScript uses **[Foundry Cheatcode](https://book.getfoundry.sh/cheatcodes/fs?highlight=readFile#signature)** **[`readFile`](https://book.getfoundry.sh/cheatcodes/fs?highlight=readFile#signature)**  
+Before we can allow Foundry to read our files into our deploy script, we'll need to set some permissions in `foundry.toml`. Add this to your `foundry.toml`:
+```bash
+fs_permissions = [{access = "read", path = "./img/"}]
+```
+> ❗ **NOTE**
+> This line provides the Foundry framework `read` permissions, specifically in the `img` directory. This is much safer than setting `FFI = true`!
+
+
+4. [DeployMoodNftTest.t.sol](https://github.com/AkshatOdiya/foundry-nft/blob/main/test/unit/DeployMoodNftTest.t.sol)
+
+Remember to classify file into folders like `unit`, `integrations` or `staging` for respective cases.
+
+Here, file that include only main contract file and unit testing are put under `unit` folder and those who include their respective deployer scripts and integrations(or interactions) tests are put under `integrations` folder.
