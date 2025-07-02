@@ -67,15 +67,15 @@ Deploying on Anvil because deploying on testnets can be slow and problematic
 Lets make a revisit, how to add anvil chain on metamask.
 * Click on `+ Add network`
 * Choose to add a network manually and enter the details as shown below:
-![Adding anvil chain manually](image.png)
+![Adding anvil chain manually](README.md_images/image.png)
 *  Import an anvil account, In your Metamask account selector, choose `+ add account or hardware wallet`  
 
-![add anvil account to metamask](image-1.png)  
+![add anvil account to metamask](README.md_images/image-1.png)  
 Select `import account` and enter one of the default private keys offered by the anvil chain.
-![anvil private keys](image-2.png)  
+![anvil private keys](README.md_images/image-2.png)  
 
 you can run `make deployMood` now
-![deployed on anvil](image-3.png)
+![deployed on anvil](README.md_images/image-3.png)
 
 3. Mint the Nft: With the contract address, we should be able to use a cast command to interact with it.
 ```bash
@@ -87,7 +87,7 @@ cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "mintNft()" --private-key a
 When that transaction completes, what we can _finally_ do, is take that contract address, go back into `Metamask > NFTs > Import NFT`. This is going to ask for our contract address, which we have from our deployment, and our tokenId, which is 0.
 
 Once imported ...  
-![importing Nft](image-4.png)
+![importing Nft](README.md_images/image-4.png)
 
 
 4. If you want to flipMood of Nft
@@ -99,4 +99,4 @@ rpc-url http://localhost:8545
 > For Metamask to reflect the change, we'll regrettably have to remove and readd the NFT collection.
 
 Once we reimport our NFT however...
-![reimport Nft](image-5.png)
+![reimport Nft](README.md_images/image-5.png)
