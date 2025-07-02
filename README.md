@@ -68,7 +68,8 @@ Lets make a revisit, how to add anvil chain on metamask.
 * Click on `+ Add network`
 * Choose to add a network manually and enter the details as shown below:
 ![Adding anvil chain manually](image.png)
-*  Import an anvil account, In your Metamask account selector, choose `+ add account or hardware wallet`
+*  Import an anvil account, In your Metamask account selector, choose `+ add account or hardware wallet`  
+
 ![add anvil account to metamask](image-1.png)  
 Select `import account` and enter one of the default private keys offered by the anvil chain.
 ![anvil private keys](image-2.png)  
